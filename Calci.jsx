@@ -20,19 +20,19 @@ export default function Calculator()
     let base = 0;
     if(e.target.value === "HDFC")
     {
-        base =1
+        base =0.05
     }
     if(e.target.value === "SBI")
         {
-            base = 2
+            base = 0.38
         }
     if(e.target.value === "IDFC")
             {
-                base =3
+                base =0.62
             } 
     if(e.target.value === "AXIS")
                {
-                base =4
+                base =0.225
                 } 
     setBaseIntrestRate(base)
     setIntrestRate(base);
@@ -48,20 +48,20 @@ export default function Calculator()
     if(e.target.value === "Homeloan")
         {
 
-            updteIntrest +=1
+            updteIntrest +=0.55
             
         }
     
     if(e.target.value === "vechileloan")
             {
 
-                updteIntrest +=2
+                updteIntrest +=0.66
 
                 
             }
     if(e.target.value === "Goldloan")
                 {
-                    updteIntrest +=3 
+                    updteIntrest +=0.89
                 }
 
             setIntrestRate(updteIntrest)
@@ -94,7 +94,7 @@ export default function Calculator()
                 <label >Number of years</label>
                 <input type="text" value={Years} onChange={(e)=>setYears(e.target.value)}></input>
       
-            <span>Your inrest would be :- {(PrincipleAmount * Years * IntrestRate )} </span>
+            <span>Your inrest would be :- {(PrincipleAmount * Years * IntrestRate )/100} </span>
            
             <br></br>
             <button className="Calculate" onClick={HandleClick}>Calculate</button>
