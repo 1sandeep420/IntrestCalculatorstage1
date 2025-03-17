@@ -5,7 +5,9 @@ export default function Calculator()
    
     const [PrincipleAmount , setPrincipleAmount ] = useState("")
     const [Years, setYears ] = useState("")
-    const [IntrestRate , setIntrestRate] = useState("")
+    const [IntrestRate , setIntrestRate] = useState(0)
+    const [BaseIntrestRate ,  setBaseIntrestRate] = useState(0)
+    
 
     function HandleClick()
     {
@@ -14,26 +16,56 @@ export default function Calculator()
     }
    function HandleOption(e)
    {
+
+    let base = 0;
     if(e.target.value === "HDFC")
     {
-        setIntrestRate("2")
-        console.log(IntrestRate)
+        base =1
     }
     if(e.target.value === "SBI")
         {
-            setIntrestRate(()=>"3")
-            console.log(IntrestRate)
+            base = 2
         }
     if(e.target.value === "IDFC")
             {
-                setIntrestRate(()=>"4")
-                console.log(IntrestRate)
+                base =3
             } 
     if(e.target.value === "AXIS")
                {
-                    setIntrestRate(()=>"5")
-                    console.log(IntrestRate)
-                }  
+                base =4
+                } 
+    setBaseIntrestRate(base)
+    setIntrestRate(base);
+    console.log(base)
+                
+   }
+
+   function HandleIntrest(e)
+   {
+
+    let updteIntrest = BaseIntrestRate;
+
+    if(e.target.value === "Homeloan")
+        {
+
+            updteIntrest +=1
+            
+        }
+    
+    if(e.target.value === "vechileloan")
+            {
+
+                updteIntrest +=2
+
+                
+            }
+    if(e.target.value === "Goldloan")
+                {
+                    updteIntrest +=3 
+                }
+
+            setIntrestRate(updteIntrest)
+            console.log(BaseIntrestRate)
    }
     return(
         <>
@@ -44,26 +76,25 @@ export default function Calculator()
                 <label>Principle Amount</label>
                 <input type="text" className="PrincipleAmountText" value={PrincipleAmount}  onChange={(e)=>setPrincipleAmount(e.target.value)}></input>
            
-            <div className="IntrestSelectoption"  onClick={HandleOption}>
-                <select>
+            <div className="IntrestSelectoption">
+                <select   onChange={HandleOption}>
                     <option>Banks</option>
                     <option> HDFC</option>
                     <option>SBI</option>
                     <option>IDFC</option>
                     <option>AXIS</option>
                 </select>
-            <select>
-                <option>Houseloan</option>
+            <select onChange={HandleIntrest}>
+                <option>LoanType</option>
                 <option>Homeloan</option>
                 <option>vechileloan</option>
                 <option>Goldloan</option>
             </select>
             </div>
- 
                 <label >Number of years</label>
                 <input type="text" value={Years} onChange={(e)=>setYears(e.target.value)}></input>
       
-            <span>Your inrest would be :- {(PrincipleAmount * Years * IntrestRate )/100} </span>
+            <span>Your inrest would be :- {(PrincipleAmount * Years * IntrestRate )} </span>
            
             <br></br>
             <button className="Calculate" onClick={HandleClick}>Calculate</button>
@@ -72,4 +103,4 @@ export default function Calculator()
        
         </>
     )
-}
+}   
