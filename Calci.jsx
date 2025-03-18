@@ -94,7 +94,7 @@ export default function Calculator()
                 <label >Number of years</label>
                 <input type="text" value={Years} onChange={(e)=>setYears(e.target.value)}></input>
       
-            <span>Your inrest would be :- {(PrincipleAmount * Years * IntrestRate )/100} </span>
+            <span className="Span">Your inrest would be :- {(PrincipleAmount * Years * IntrestRate )/100} </span>
            
             <br></br>
             <button className="Calculate" onClick={HandleClick}>Calculate</button>
